@@ -15,7 +15,7 @@
  */
 
 
-package com.super8bit.bolt.models;
+package com.super8bit.bolt.entities;
 
 /**
  * The email bean that will be used in the getUserEmail response.

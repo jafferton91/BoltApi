@@ -21,7 +21,7 @@ import com.google.api.control.ServiceManagementConfigFilter;
 import com.google.api.control.extensions.appengine.GoogleAppEngineControlFilter;
 import com.google.api.server.spi.guice.EndpointsModule;
 import com.google.common.collect.ImmutableList;
-import com.super8bit.bolt.endpoints.Echo;
+import com.super8bit.bolt.endpoints.Movements;
 
 import javax.inject.Singleton;
 import java.util.HashMap;
@@ -43,8 +43,8 @@ public class EchoEndpointModule extends EndpointsModule {
 		bind(GoogleAppEngineControlFilter.class).in(Singleton.class);
 		filter("/_ah/api/*").through(GoogleAppEngineControlFilter.class, apiController);
 
-		bind(Echo.class).toInstance(new Echo());
-		configureEndpoints("/_ah/api/*", ImmutableList.of(Echo.class));
+		bind(Movements.class).toInstance(new Movements());
+		configureEndpoints("/_ah/api/*", ImmutableList.of(Movements.class));
 	}
 }
 // [END endpoints_module]

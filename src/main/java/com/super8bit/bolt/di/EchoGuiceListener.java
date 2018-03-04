@@ -26,7 +26,7 @@ public class EchoGuiceListener extends GuiceServletContextListener {
 
 	@Override
 	protected Injector getInjector() {
-		return Guice.createInjector(new EchoEndpointModule());
+		return Guice.createInjector(new EchoEndpointModule(), new BusinessLogicModule());
 	}
 }
 // [END injector]

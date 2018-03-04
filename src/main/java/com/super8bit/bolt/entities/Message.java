@@ -15,7 +15,7 @@
  */
 
 
-package com.super8bit.bolt.models;
+package com.super8bit.bolt.entities;
 
 /**
  * The message bean that will be used in the bolt request and response.
