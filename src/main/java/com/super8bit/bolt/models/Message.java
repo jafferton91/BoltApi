@@ -15,10 +15,10 @@
  */
 
 
-package com.example.echo;
+package com.super8bit.bolt.models;
 
 /**
- * The message bean that will be used in the echo request and response.
+ * The message bean that will be used in the bolt request and response.
  */
 public class Message {
 

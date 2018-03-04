@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.echo;
+package com.super8bit.bolt.endpoints;
 
 import com.google.api.server.spi.auth.EspAuthenticator;
 import com.google.api.server.spi.auth.common.User;
@@ -27,18 +27,20 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.config.Nullable;
 import com.google.api.server.spi.response.UnauthorizedException;
+import com.super8bit.bolt.models.Email;
+import com.super8bit.bolt.models.Message;
 
 /**
  * The Echo API which Endpoints will be exposing.
  */
 // [START echo_api_annotation]
 @Api(
-    name = "echo",
+    name = "bolt",
     version = "v1",
     namespace =
     @ApiNamespace(
-        ownerDomain = "echo.example.com",
-        ownerName = "echo.example.com",
+        ownerDomain = "bolt.super8bit.com",
+        ownerName = "bolt.super8bit.com",
         packagePath = ""
     ),
     // [START_EXCLUDE]
@@ -60,13 +62,13 @@ public class Echo {
    * many times in the returned message.
    *
    * <p>Note that name is specified and will override the default name of "{class name}.{method
-   * name}". For example, the default is "echo.echo".
+   * name}". For super8bit, the default is "bolt.bolt".
    *
    * <p>Note that httpMethod is not specified. This will default to a reasonable HTTP method
    * depending on the API method name. In this case, the HTTP method will default to POST.
    */
   // [START echo_method]
-  @ApiMethod(name = "echo")
+  @ApiMethod(name = "bolt")
   public Message echo(Message message, @Named("n") @Nullable Integer n) {
     return doEcho(message, n);
   }
@@ -77,13 +79,13 @@ public class Echo {
    * many times in the returned message.
    *
    * <p>Note that name is specified and will override the default name of "{class name}.{method
-   * name}". For example, the default is "echo.echo".
+   * name}". For super8bit, the default is "bolt.bolt".
    *
    * <p>Note that httpMethod is not specified. This will default to a reasonable HTTP method
    * depending on the API method name. In this case, the HTTP method will default to POST.
    */
   // [START echo_path]
-  @ApiMethod(name = "echo_path_parameter", path = "echo/{n}")
+  @ApiMethod(name = "echo_path_parameter", path = "bolt/{n}")
   public Message echoPathParameter(Message message, @Named("n") int n) {
     return doEcho(message, n);
   }
@@ -94,7 +96,7 @@ public class Echo {
    * many times in the returned message.
    *
    * <p>Note that name is specified and will override the default name of "{class name}.{method
-   * name}". For example, the default is "echo.echo".
+   * name}". For super8bit, the default is "bolt.bolt".
    *
    * <p>Note that httpMethod is not specified. This will default to a reasonable HTTP method
    * depending on the API method name. In this case, the HTTP method will default to POST.
@@ -125,10 +127,10 @@ public class Echo {
    * 401.
    *
    * <p>Note that name is not specified. This will default to "{class name}.{method name}". For
-   * example, the default is "echo.getUserEmail".
+   * super8bit, the default is "bolt.getUserEmail".
    *
    * <p>Note that httpMethod is not required here. Without httpMethod, this will default to GET due
-   * to the API method name. httpMethod is added here for example purposes.
+   * to the API method name. httpMethod is added here for super8bit purposes.
    */
   // [START google_id_token_auth]
   @ApiMethod(
@@ -153,10 +155,10 @@ public class Echo {
    * 401.
    *
    * <p>Note that name is not specified. This will default to "{class name}.{method name}". For
-   * example, the default is "echo.getUserEmail".
+   * super8bit, the default is "bolt.getUserEmail".
    *
    * <p>Note that httpMethod is not required here. Without httpMethod, this will default to GET due
-   * to the API method name. httpMethod is added here for example purposes.
+   * to the API method name. httpMethod is added here for super8bit purposes.
    */
   // [START firebase_auth]
   @ApiMethod(

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,18 @@
  */
 
 
-package com.example.echo;
+package com.super8bit.bolt.di;
 
-/**
- * The email bean that will be used in the getUserEmail response.
- */
-public class Email {
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
 
-  private String email;
+// [START injector]
+public class EchoGuiceListener extends GuiceServletContextListener {
 
-  public String getEmail() {
-    return this.email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	@Override
+	protected Injector getInjector() {
+		return Guice.createInjector(new EchoEndpointModule());
+	}
 }
+// [END injector]
