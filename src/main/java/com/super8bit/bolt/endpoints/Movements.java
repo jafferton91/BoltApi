@@ -23,6 +23,7 @@ import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.inject.Inject;
 import com.super8bit.bolt.entities.Email;
 import com.super8bit.bolt.entities.Message;
+import com.super8bit.bolt.entities.Movements.Movement;
 import com.super8bit.bolt.services.MovementsService;
 
 import java.util.logging.Logger;
@@ -73,6 +74,7 @@ public class Movements {
 	// [START echo_method]
 	@ApiMethod(name = "echo")
 	public Message echo(Message message, @Named("n") @Nullable Integer n) {
+		movementsService.create(new Movement());
 		return doEcho(message, n);
 	}
 	// [END echo_method]

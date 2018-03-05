@@ -21,6 +21,7 @@ import com.google.api.control.ServiceManagementConfigFilter;
 import com.google.api.control.extensions.appengine.GoogleAppEngineControlFilter;
 import com.google.api.server.spi.guice.EndpointsModule;
 import com.google.common.collect.ImmutableList;
+import com.googlecode.objectify.ObjectifyFilter;
 import com.super8bit.bolt.endpoints.Movements;
 
 import javax.inject.Singleton;
