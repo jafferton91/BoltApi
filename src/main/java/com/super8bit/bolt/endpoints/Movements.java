@@ -23,6 +23,8 @@ import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.inject.Inject;
 import com.super8bit.bolt.entities.Email;
 import com.super8bit.bolt.entities.Message;
+import com.super8bit.bolt.entities.Movements.Movement;
+import com.super8bit.bolt.exceptions.ApiException;
 import com.super8bit.bolt.services.MovementsService;
 
 import java.util.logging.Logger;
@@ -44,7 +46,7 @@ import java.util.logging.Logger;
 	issuers = {
 		@ApiIssuer(
 			name = "firebase",
-			issuer = "https://securetoken.google.com/YOUR-PROJECT-ID",
+			issuer = "https://securetoken.google.com/nordwand-555",
 			jwksUri = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system" + ".gserviceaccount.com"
 		)
 	}
@@ -71,59 +73,20 @@ public class Movements {
 	 * depending on the API method name. In this case, the HTTP method will default to POST.
 	 */
 	// [START echo_method]
-	@ApiMethod(name = "echo")
-	public Message echo(Message message, @Named("n") @Nullable Integer n) {
-		return doEcho(message, n);
+	@ApiMethod(
+		name = "create",
+		httpMethod = ApiMethod.HttpMethod.GET
+	)
+	public Movement create(Movement movement) {
+		try {
+			return movementsService.create(movement);
+		} catch (ApiException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 	// [END echo_method]
-
-	/**
-	 * Echoes the received message back. If n is a non-negative integer, the message is copied that
-	 * many times in the returned message.
-	 * <p>
-	 * <p>Note that name is specified and will override the default name of "{class name}.{method
-	 * name}". For super8bit, the default is "bolt.bolt".
-	 * <p>
-	 * <p>Note that httpMethod is not specified. This will default to a reasonable HTTP method
-	 * depending on the API method name. In this case, the HTTP method will default to POST.
-	 */
-	// [START echo_path]
-	@ApiMethod(name = "echo_path_parameter", path = "bolt/{n}")
-	public Message echoPathParameter(Message message, @Named("n") int n) {
-		return doEcho(message, n);
-	}
-	// [END echo_path]
-
-	/**
-	 * Echoes the received message back. If n is a non-negative integer, the message is copied that
-	 * many times in the returned message.
-	 * <p>
-	 * <p>Note that name is specified and will override the default name of "{class name}.{method
-	 * name}". For super8bit, the default is "bolt.bolt".
-	 * <p>
-	 * <p>Note that httpMethod is not specified. This will default to a reasonable HTTP method
-	 * depending on the API method name. In this case, the HTTP method will default to POST.
-	 */
-	// [START echo_api_key]
-	@ApiMethod(name = "echo_api_key", path = "echo_api_key", apiKeyRequired = AnnotationBoolean.TRUE)
-	public Message echoApiKey(Message message, @Named("n") @Nullable Integer n) {
-		return doEcho(message, n);
-	}
-	// [END echo_api_key]
-
-	private Message doEcho(Message message, Integer n) {
-		if (n != null && n >= 0) {
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < n; i++) {
-				if (i > 0) {
-					sb.append(" ");
-				}
-				sb.append(message.getMessage());
-			}
-			message.setMessage(sb.toString());
-		}
-		return message;
-	}
 
 	/**
 	 * Gets the authenticated user's email. If the user is not authenticated, this will return an HTTP
@@ -171,7 +134,7 @@ public class Movements {
 		issuerAudiences = {
 			@ApiIssuerAudience(
 				name = "firebase",
-				audiences = {"YOUR-PROJECT-ID"}
+				audiences = {"nordwand-555"}
 			)
 		}
 	)
