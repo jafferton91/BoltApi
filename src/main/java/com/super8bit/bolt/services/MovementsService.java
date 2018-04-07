@@ -1,13 +1,14 @@
 package com.super8bit.bolt.services;
 
 import com.super8bit.bolt.entities.Movements.Movement;
+import com.super8bit.bolt.exceptions.ApiException;
 
 public interface MovementsService {
 
-	public Movement create(Movement todo);
+	Movement create(Movement todo) throws ApiException;
 
-	public Movement update(Movement todo, Long id);
+	Movement update(Movement todo, Long id);
 
-	public Movement delete(Long id);
+	Movement delete(Long id);
 
 }

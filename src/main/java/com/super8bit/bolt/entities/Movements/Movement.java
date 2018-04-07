@@ -5,6 +5,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import lombok.Data;
 
 import java.util.List;
@@ -17,7 +18,11 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 @Cache
 public class Movement {
 
-	@Id public long Id;
+	@Id @Index public long id;
+
+	@Index public String name;
+
+	public String description;
 
 	public static Movement findByKey(String key) {
 		return findByKey(KeyFactory.stringToKey(key));

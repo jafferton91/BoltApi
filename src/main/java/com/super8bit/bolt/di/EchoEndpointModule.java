@@ -25,6 +25,7 @@ import com.googlecode.objectify.ObjectifyFilter;
 import com.super8bit.bolt.endpoints.Movements;
 
 import javax.inject.Singleton;
+import javax.servlet.DispatcherType;
 import java.util.HashMap;
 import java.util.Map;
 

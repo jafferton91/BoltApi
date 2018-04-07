@@ -15,8 +15,6 @@
  */
 package com.super8bit.bolt.di;
 
-
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
@@ -39,8 +37,6 @@ public class BoltGuiceListener extends GuiceServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		super.contextInitialized(event);
-
-		ObjectifyService.init();
 
 		// Register objectify entities here
 		ObjectifyService.register(Movement.class);
